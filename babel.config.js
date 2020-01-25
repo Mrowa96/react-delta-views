@@ -1,5 +1,4 @@
 module.exports = api => {
-  const isDevelopment = api.env() === 'development';
   const isTest = api.env() === 'test';
 
   const presets = [
@@ -7,13 +6,13 @@ module.exports = api => {
     [
       '@babel/preset-react',
       {
-        development: isDevelopment || isTest,
+        development: isTest,
         useBuiltIns: true,
       },
     ],
   ];
 
-  const plugins = ['@babel/plugin-proposal-class-properties', '@babel/plugin-transform-runtime'];
+  const plugins = ['@babel/plugin-transform-runtime'];
 
   if (!isTest) {
     plugins.push([

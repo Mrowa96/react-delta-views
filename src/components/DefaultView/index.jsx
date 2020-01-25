@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useContext } from 'react';
-import ViewContext from '../../contexts/ViewContext';
-import { getCurrentView } from '../View';
+import ViewContext from '~/contexts/ViewContext';
+import { getCurrentView } from '~/components/Views';
 
-const StandardView = () => {
+const DefaultView = () => {
   const [currentView, setCurrentView] = useState(null);
   const { viewState } = useContext(ViewContext);
 
@@ -17,4 +17,4 @@ const StandardView = () => {
   return <currentView.component />;
 };
 
-export default StandardView;
+export default DefaultView;

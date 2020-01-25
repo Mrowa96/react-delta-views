@@ -3,21 +3,17 @@ require('dotenv').config();
 const path = require('path');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const { EnvironmentPlugin } = require('webpack');
-const packageData = require('./package.json');
 
-const ENV = process.env.NODE_ENV || 'production';
 const ANALYZE_BUILD = process.env.ANALYZE_BUILD === '1';
 
-const isDev = ENV === 'development';
-
 module.exports = {
-  mode: ENV,
-  entry: './src/index.jsx',
+  mode: 'production',
+  entry: './src/index.js',
   output: {
-    filename: '[name].[chunkhash].js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/',
+    filename: 'react-delta-views.js',
+    library: 'react-delta-views',
+    libraryTarget: 'umd',
   },
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
@@ -55,15 +51,23 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new EnvironmentPlugin({
-      NODE_ENV: process.env.NODE_ENV,
-      APP_VERSION: packageData.version,
-    }),
     new BundleAnalyzerPlugin({
       analyzerMode: ANALYZE_BUILD ? 'static' : 'disabled',
     }),
   ],
-  devtool: isDev ? 'source-map' : false,
+  externals: {
+    react: {
+      commonjs: 'react',
+      commonjs2: 'react',
+      amd: 'react',
+    },
+    'prop-types': {
+      commonjs: 'prop-types',
+      commonjs2: 'prop-types',
+      amd: 'prop-types',
+    },
+  },
+  devtool: 'source-map',
   stats: {
     assets: true,
     children: false,

@@ -1,9 +1,9 @@
 import React, { useReducer, useEffect } from 'react';
-import ViewContext from '../../contexts/ViewContext';
-import ViewReducer from '../../reducer';
-import ViewActions from '../../actions';
-import ViewState from '../../consts';
-import ViewTypes from './types';
+import ViewContext from '~/contexts/ViewContext';
+import ViewReducer from '~/reducer';
+import ViewActions from '~/actions';
+import ViewState from '~/consts';
+import ViewsTypes from './types';
 
 let viewState;
 let dispatch;
@@ -44,7 +44,7 @@ export const closeView = (name, dispatchBeforeCloseAction = true) => {
   }
 };
 
-const View = ({ children, views }) => {
+const Views = ({ children, views }) => {
   [viewState, dispatch] = useReducer(ViewReducer, {
     views: views.map(view => {
       return {
@@ -66,6 +66,6 @@ const View = ({ children, views }) => {
   return <ViewContext.Provider value={{ viewState }}>{children}</ViewContext.Provider>;
 };
 
-View.propTypes = ViewTypes;
+Views.propTypes = ViewsTypes;
 
-export default View;
+export default Views;

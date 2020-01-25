@@ -1,6 +1,5 @@
-import View, { openView, closeView, getCurrentView } from './components/View';
-import StandardView from './components/StandardView';
-import ViewContext from './contexts/ViewContext';
+import Views, { openView, closeView, getCurrentView } from './components/Views';
+import DefaultView from './components/DefaultView';
 
-export { StandardView, ViewContext, openView, closeView, getCurrentView };
-export default View;
+export { DefaultView, openView, closeView, getCurrentView };
+export default Views;
