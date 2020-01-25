@@ -1,0 +1,10 @@
+# Directories
+.vscode
+dist
+node_modules
+coverage
+
+# Files
+.DS_Store
+npm-debug.log*
+.env

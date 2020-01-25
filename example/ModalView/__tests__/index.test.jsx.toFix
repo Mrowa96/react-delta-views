@@ -1,0 +1,73 @@
+import React from 'react';
+import { render, fireEvent } from '@testing-library/react';
+import { ModalView } from 'react-view';
+import ViewContext from '@/contexts/ViewContext';
+
+describe('[Component] ModalView', () => {
+  const dummyComponent = () => <span>Dummy component</span>;
+  const layoutStateMock = {
+    viewState: {
+      views: 
+    }
+  };
+  let component;
+
+  beforeEach(() => {
+    document.body.innerHTML = `<div id="modal"></div>`;
+
+    component = (
+      <ViewContext.Provider value={layoutStateMock}>
+        <ModalView />
+      </ViewContext.Provider>
+    );
+  });
+
+  it('should get modal from state', () => {
+    render(component);
+
+    expect(layoutStateMock.getModal).toHaveBeenCalledWith('dummy-component');
+  });
+
+  it('should add modal from state if there is not one', () => {
+    layoutStateMock.getModal.mockReturnValueOnce(undefined);
+
+    render(component);
+
+    expect(layoutStateMock.addModal).toHaveBeenCalledWith('dummy-component');
+  });
+
+  it('should return null if modal is not visible', () => {
+    layoutStateMock.getModal.mockReturnValueOnce({ state: false });
+
+    const { container } = render(component);
+
+    expect(container.firstChild).toBeNull();
+  });
+
+  it('should render overlay and modal if modal is visible', () => {
+    layoutStateMock.getModal.mockReturnValueOnce({ state: true });
+
+    const { getByTestId } = render(component);
+
+    expect(getByTestId('overlay')).toBeDefined();
+    expect(getByTestId('modal')).toBeDefined();
+  });
+
+  it('should close modal on click on close modal button', () => {
+    layoutStateMock.getModal.mockReturnValueOnce({ state: true });
+
+    const { getByTestId } = render(component);
+
+    fireEvent.click(getByTestId('close-button'));
+
+    expect(layoutStateMock.closeModal).toHaveBeenCalledWith('dummy-component');
+  });
+
+  it('should render passed component', () => {
+    layoutStateMock.getModal.mockReturnValueOnce({ state: true });
+
+    const { getByText } = render(component);
+
+    expect(getByText('Dummy component')).toBeDefined();
+  });
+});
