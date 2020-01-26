@@ -1,1 +1,53 @@
 # react-delta-views
+
+## How to use?
+
+### Set up where to display your views
+
+Wrap your components with <Views>, pass to it your views configuration and place <DefaultView> somewhere as a placeholder to display your views. Example:
+
+```js
+import Views from 'react-delta-views';
+
+const App = () => (
+  <Views views={viewsConfig}>
+    <Header />
+    <DefaultView />
+    <Footer />
+  </Views>
+);
+```
+
+### Define views configuration
+
+Views configuration has to be an array with pre-defined views. Example:
+
+```js
+const viewsConfig = [
+  {
+    name: 'homepage',
+    path: '/',
+    component: HomePage,
+    default: true,
+  },
+  {
+    name: 'settings',
+    path: '/settings',
+    component: SettingsPage,
+  },
+];
+```
+
+### Navigate between views
+
+If you want to change current view, call `openView` method with view name as first parameter. Example:
+
+```js
+import { openView } from 'react-delta-views';
+
+const Button = () => (
+    <button onClick={() => openView('settings')}>
+        Open settings
+    </button>;
+)
+```

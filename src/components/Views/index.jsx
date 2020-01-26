@@ -1,20 +1,20 @@
 import React, { useReducer, useEffect } from 'react';
-import ViewContext from '~/contexts/ViewContext';
+import ViewsContext from '~/contexts/ViewsContext';
 import { OPEN_VIEW, CLOSE_VIEW, BEFORE_CLOSE_VIEW } from './actions';
 import { VIEW_HIDDEN, VIEW_VISIBLE } from './consts';
 import viewReducer from './reducer';
 import ViewsTypes from './types';
 
-let viewState;
+let viewsState;
 let dispatch;
 
-const getView = name => viewState.views.find(view => view.name === name);
+const getView = name => viewsState.views.find(view => view.name === name);
 
 export const getCurrentView = as => {
-  let currentView = viewState.views.find(view => view.state > VIEW_HIDDEN && view.as === as);
+  let currentView = viewsState.views.find(view => view.state > VIEW_HIDDEN && view.as === as);
 
   if (!currentView) {
-    currentView = viewState.views.find(view => view?.default === true && view.as === as);
+    currentView = viewsState.views.find(view => view?.default === true && view.as === as);
   }
 
   return currentView;
@@ -45,7 +45,7 @@ export const closeView = (name, dispatchBeforeCloseAction = true) => {
 };
 
 export default function Views({ children, views }) {
-  [viewState, dispatch] = useReducer(viewReducer, {
+  [viewsState, dispatch] = useReducer(viewReducer, {
     views: views.map(view => {
       return {
         ...view,
@@ -63,7 +63,7 @@ export default function Views({ children, views }) {
     }
   }, [currentView]);
 
-  return <ViewContext.Provider value={{ viewState }}>{children}</ViewContext.Provider>;
+  return <ViewsContext.Provider value={{ viewsState }}>{children}</ViewsContext.Provider>;
 }
 
 Views.propTypes = ViewsTypes;

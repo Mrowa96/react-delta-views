@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import ViewContext from '~/contexts/ViewContext';
+import ViewsContext from '~/contexts/ViewsContext';
 
 export default function useViews() {
-  return useContext(ViewContext);
+  return useContext(ViewsContext);
 }

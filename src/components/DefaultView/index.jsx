@@ -4,11 +4,11 @@ import useViews from '~/hooks/useViews';
 
 export default function DefaultView() {
   const [currentView, setCurrentView] = useState(null);
-  const { viewState } = useViews();
+  const { viewsState } = useViews();
 
   useEffect(() => {
     setCurrentView(getCurrentView());
-  }, [viewState]);
+  }, [viewsState]);
 
   if (!currentView) {
     return null;
