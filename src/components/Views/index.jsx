@@ -1,8 +1,8 @@
 import React, { useReducer, useEffect } from 'react';
 import ViewContext from '~/contexts/ViewContext';
-import ViewReducer from '~/reducer';
-import ViewActions from '~/actions';
-import ViewState from '~/consts';
+import { OPEN_VIEW, CLOSE_VIEW, BEFORE_CLOSE_VIEW } from './actions';
+import { VIEW_HIDDEN, VIEW_VISIBLE } from './consts';
+import viewReducer from './reducer';
 import ViewsTypes from './types';
 
 let viewState;
@@ -11,7 +11,7 @@ let dispatch;
 const getView = name => viewState.views.find(view => view.name === name);
 
 export const getCurrentView = as => {
-  let currentView = viewState.views.find(view => view.state > 0 && view.as === as);
+  let currentView = viewState.views.find(view => view.state > VIEW_HIDDEN && view.as === as);
 
   if (!currentView) {
     currentView = viewState.views.find(view => view?.default === true && view.as === as);
@@ -27,7 +27,7 @@ export const openView = (name, as, options) => {
     throw new Error(`View with name "${name}" was not registered`);
   }
 
-  dispatch({ type: ViewActions.OPEN_VIEW, payload: { name, as, options } });
+  dispatch({ type: OPEN_VIEW, payload: { name, as, options } });
 };
 
 export const closeView = (name, dispatchBeforeCloseAction = true) => {
@@ -38,19 +38,19 @@ export const closeView = (name, dispatchBeforeCloseAction = true) => {
   }
 
   if (dispatchBeforeCloseAction) {
-    dispatch({ type: ViewActions.BEFORE_CLOSE_VIEW, payload: { name } });
+    dispatch({ type: BEFORE_CLOSE_VIEW, payload: { name } });
   } else {
-    dispatch({ type: ViewActions.CLOSE_VIEW, payload: { name } });
+    dispatch({ type: CLOSE_VIEW, payload: { name } });
   }
 };
 
-const Views = ({ children, views }) => {
-  [viewState, dispatch] = useReducer(ViewReducer, {
+export default function Views({ children, views }) {
+  [viewState, dispatch] = useReducer(viewReducer, {
     views: views.map(view => {
       return {
         ...view,
         as: undefined,
-        state: view?.path === window.location.pathname ? ViewState.VISIBLE : ViewState.HIDDEN,
+        state: view?.path === window.location.pathname ? VIEW_VISIBLE : VIEW_HIDDEN,
       };
     }),
   });
@@ -64,8 +64,6 @@ const Views = ({ children, views }) => {
   }, [currentView]);
 
   return <ViewContext.Provider value={{ viewState }}>{children}</ViewContext.Provider>;
-};
+}
 
 Views.propTypes = ViewsTypes;
-
-export default Views;
