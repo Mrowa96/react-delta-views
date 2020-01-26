@@ -10,6 +10,8 @@ module.exports = {
     ecmaVersion: 2020,
   },
   rules: {
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
     'prettier/prettier': 'error',
     'padding-line-between-statements': ['error', { blankLine: 'always', prev: '*', next: 'return' }],
     'no-console': ['error', { allow: ['warn', 'error', 'info'] }],
