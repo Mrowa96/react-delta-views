@@ -1,17 +1,28 @@
 {
   "name": "react-delta-views",
   "description": "Library for managing views in React.",
+  "main": "dist/react-delta-views.js",
   "version": "0.1.0",
+  "author": "Paweł Mrowiec <work@pawel-mrowiec.pl>",
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mrowa96/react-delta-views.git"
+  },
   "scripts": {
     "build": "webpack",
     "start": "webpack --watch",
     "test": "jest --env=jsdom",
     "test:watch": "jest --env=jsdom --watch",
     "test:coverage": "jest --env=jsdom --coverage",
-    "analyze-build": "cross-env NODE_ENV=production ANALYZE_BUILD=1 webpack"
+    "lint": "eslint --ext .js --ext .jsx .",
+    "analyze-build": "cross-env ANALYZE_BUILD=1 webpack"
   },
-  "author": "Paweł Mrowiec <work@pawel-mrowiec.pl>",
-  "license": "GPLv3",
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
+  },
   "dependencies": {
     "cross-env": "^6.0.3",
     "prop-types": "^15.7.2",
@@ -43,6 +54,7 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.18.0",
     "eslint-plugin-react-hooks": "^2.3.0",
+    "husky": "^4.2.1",
     "jest": "^24.9.0",
     "prettier": "1.19.1",
     "react-test-renderer": "^16.12.0",
