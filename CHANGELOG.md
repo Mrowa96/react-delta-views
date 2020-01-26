@@ -9,3 +9,10 @@
 - Add some tests
 - Create basic docs
 - Change `ViewContext` to `ViewsContext`
+
+## 0.4.0
+
+- **BREAKING** Change `views` prop in `Views` component to `config`
+- **BREAKING** Change `as` property in `View` to `outlet`
+- Add `Views` helpers tests
+- Add API reference to README

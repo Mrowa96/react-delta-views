@@ -1,59 +1,42 @@
 import React, { useReducer, useEffect } from 'react';
 import ViewsContext from '~/contexts/ViewsContext';
 import { OPEN_VIEW, CLOSE_VIEW, BEFORE_CLOSE_VIEW } from './actions';
-import { VIEW_HIDDEN, VIEW_VISIBLE } from './consts';
+import { createInitialState, isViewExistsInState } from './helpers';
+import { VIEW_HIDDEN } from './consts';
 import viewReducer from './reducer';
 import ViewsTypes from './types';
 
 let viewsState;
 let dispatch;
 
-const getView = name => viewsState.views.find(view => view.name === name);
-
-export const getCurrentView = as => {
-  let currentView = viewsState.views.find(view => view.state > VIEW_HIDDEN && view.as === as);
+function getCurrentView(outlet) {
+  let currentView = viewsState.views.find(view => view.state !== VIEW_HIDDEN && view.outlet === outlet);
 
   if (!currentView) {
-    currentView = viewsState.views.find(view => view?.default === true && view.as === as);
+    currentView = viewsState.views.find(view => !!view?.default && view.outlet === outlet);
   }
 
   return currentView;
-};
+}
 
-export const openView = (name, as, options) => {
-  const view = getView(name);
-
-  if (!view) {
-    throw new Error(`View with name "${name}" was not registered`);
+function openView(name, outlet, options) {
+  if (isViewExistsInState(viewsState, name)) {
+    dispatch({ type: OPEN_VIEW, payload: { name, outlet, options } });
   }
+}
 
-  dispatch({ type: OPEN_VIEW, payload: { name, as, options } });
-};
-
-export const closeView = (name, dispatchBeforeCloseAction = true) => {
-  const view = getView(name);
-
-  if (!view) {
-    throw new Error(`View with name "${name}" was not registered`);
+function closeView(name, dispatchBeforeCloseAction = true) {
+  if (isViewExistsInState(viewsState, name)) {
+    if (dispatchBeforeCloseAction) {
+      dispatch({ type: BEFORE_CLOSE_VIEW, payload: { name } });
+    } else {
+      dispatch({ type: CLOSE_VIEW, payload: { name } });
+    }
   }
+}
 
-  if (dispatchBeforeCloseAction) {
-    dispatch({ type: BEFORE_CLOSE_VIEW, payload: { name } });
-  } else {
-    dispatch({ type: CLOSE_VIEW, payload: { name } });
-  }
-};
-
-export default function Views({ children, views }) {
-  [viewsState, dispatch] = useReducer(viewReducer, {
-    views: views.map(view => {
-      return {
-        ...view,
-        as: undefined,
-        state: view?.path === window.location.pathname ? VIEW_VISIBLE : VIEW_HIDDEN,
-      };
-    }),
-  });
+function Views({ children, config }) {
+  [viewsState, dispatch] = useReducer(viewReducer, createInitialState(config));
 
   const currentView = getCurrentView();
 
@@ -67,3 +50,6 @@ export default function Views({ children, views }) {
 }
 
 Views.propTypes = ViewsTypes;
+
+export default Views;
+export { closeView, openView, getCurrentView };

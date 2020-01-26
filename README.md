@@ -1,16 +1,16 @@
 # react-delta-views
 
-## How to use?
+## How to use it?
 
 ### Set up where to display your views
 
 Wrap your components with <Views>, pass to it your views configuration and place <DefaultView> somewhere as a placeholder to display your views. Example:
 
-```js
+```jsx
 import Views from 'react-delta-views';
 
 const App = () => (
-  <Views views={viewsConfig}>
+  <Views config={viewsConfig}>
     <Header />
     <DefaultView />
     <Footer />
@@ -42,7 +42,7 @@ const viewsConfig = [
 
 If you want to change current view, call `openView` method with view name as first parameter. Example:
 
-```js
+```jsx
 import { openView } from 'react-delta-views';
 
 const Button = () => (
@@ -51,3 +51,60 @@ const Button = () => (
     </button>;
 )
 ```
+
+If you want close view, just call `closeView` method.
+
+```jsx
+import { closeView } from 'react-delta-views';
+
+const Button = () => (
+    <button onClick={() => closeView('settings')}>
+        Close settings
+    </button>;
+)
+```
+
+## API reference
+
+### Interfaces
+
+- ViewConfig:
+
+  - name: `string`
+  - component: `React.Component`
+  - path: `?string`
+  - default: `?boolean`
+
+- View:
+
+  - name: `string`
+  - component: `React.Component`
+  - state: `ViewState`
+  - path: `?string`
+  - default: `?boolean`
+  - outlet: `?string`
+  - options: `?object`
+
+### Components
+
+- Views
+
+  - children: `React.Children`
+  - config: `ViewConfig[]`
+
+- DefaultView
+
+### Hooks
+
+- useViews(): `{ viewsState: { views: View[] } }`
+
+### Methods
+
+- openView(name: `string`, outlet: `?string`, options: `?object`): `void`
+- closeView(name: `string`, dispatchBeforeCloseAction: `?boolean = true`): `void`
+- getCurrentView(outlet: `?string`): `View`
+
+## TODO
+
+- Move to TypeScript or add types
+- Write tests for Views component

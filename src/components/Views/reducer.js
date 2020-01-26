@@ -8,9 +8,9 @@ export default function viewReducer(state, { type, payload }) {
         ...state,
         views: state.views.reduce((views, view) => {
           if (view.name === payload.name) {
-            views.push({ ...view, as: payload.as, options: payload.options, state: VIEW_VISIBLE });
-          } else if (!payload.as) {
-            views.push({ ...view, as: undefined, options: undefined, state: VIEW_HIDDEN });
+            views.push({ ...view, outlet: payload.outlet, options: payload.options, state: VIEW_VISIBLE });
+          } else if (!payload.outlet) {
+            views.push({ ...view, outlet: undefined, options: undefined, state: VIEW_HIDDEN });
           } else {
             views.push({ ...view });
           }
@@ -38,7 +38,7 @@ export default function viewReducer(state, { type, payload }) {
         ...state,
         views: state.views.reduce((views, view) => {
           if (view.name === payload.name) {
-            views.push({ ...view, as: undefined, options: undefined, state: VIEW_HIDDEN });
+            views.push({ ...view, outlet: undefined, options: undefined, state: VIEW_HIDDEN });
           } else {
             views.push({ ...view });
           }

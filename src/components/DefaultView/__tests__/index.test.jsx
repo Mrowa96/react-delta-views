@@ -9,7 +9,7 @@ describe('[Component] DefaultView ', () => {
   it('should render current view component', () => {
     const { queryByTestId } = render(
       <Views
-        views={[
+        config={[
           {
             name: 'dummy-view',
             component: DummyComponent,
@@ -27,7 +27,7 @@ describe('[Component] DefaultView ', () => {
   it('should render nothing if current view is undefined', () => {
     const { queryByTestId } = render(
       <Views
-        views={[
+        config={[
           {
             name: 'dummy-view',
             component: DummyComponent,
