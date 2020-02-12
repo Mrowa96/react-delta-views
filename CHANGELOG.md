@@ -16,3 +16,7 @@
 - **BREAKING** Change `as` property in `View` to `outlet`
 - Add `Views` helpers tests
 - Add API reference to README
+
+## 0.5.0
+
+- Rewrite with TypeScript

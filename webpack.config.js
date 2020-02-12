@@ -6,14 +6,14 @@ const ANALYZE_BUILD = process.env.ANALYZE_BUILD === '1';
 
 module.exports = {
   mode: 'production',
-  entry: './src/index.js',
+  entry: './src/index.ts',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'react-delta-views.js',
     libraryTarget: 'commonjs2',
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.json'],
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
     alias: {
       '~': path.resolve(__dirname, './src/'),
     },
@@ -21,7 +21,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(ts|tsx)$/,
         enforce: 'pre',
         loader: 'eslint-loader',
         include: path.resolve(__dirname, 'src'),
@@ -29,16 +29,11 @@ module.exports = {
       {
         oneOf: [
           {
-            test: /\.(js|jsx)$/,
+            test: /\.(ts|tsx)$/,
             include: path.resolve(__dirname, 'src'),
             use: [
               {
-                loader: 'babel-loader',
-                options: {
-                  cacheDirectory: true,
-                  cacheCompression: true,
-                  compact: true,
-                },
+                loader: 'ts-loader',
               },
             ],
           },
@@ -58,13 +53,13 @@ module.exports = {
       commonjs2: 'react',
       amd: 'react',
     },
-    'prop-types': {
-      commonjs: 'prop-types',
-      commonjs2: 'prop-types',
-      amd: 'prop-types',
-    },
+    // 'prop-types': {
+    //   commonjs: 'prop-types',
+    //   commonjs2: 'prop-types',
+    //   amd: 'prop-types',
+    // },
   },
-  devtool: 'source-map',
+  devtool: 'cheap-module-eval-source-map',
   stats: {
     assets: true,
     children: false,

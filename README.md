@@ -7,7 +7,7 @@
 Wrap your components with <Views>, pass to it your views configuration and place <DefaultView> somewhere as a placeholder to display your views. Example:
 
 ```jsx
-import Views from 'react-delta-views';
+import Views, { DefaultView } from 'react-delta-views';
 
 const App = () => (
   <Views config={viewsConfig}>
@@ -40,7 +40,7 @@ const viewsConfig = [
 
 ### Navigate between views
 
-If you want to change current view, call `openView` method with view name as first parameter. Example:
+If you want to change current view, call `openView` function with view name as first parameter. Example:
 
 ```jsx
 import { openView } from 'react-delta-views';
@@ -52,7 +52,7 @@ const Button = () => (
 )
 ```
 
-If you want close view, just call `closeView` method.
+If you want close view, just call `closeView` function.
 
 ```jsx
 import { closeView } from 'react-delta-views';
