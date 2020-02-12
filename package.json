@@ -2,7 +2,7 @@
   "name": "react-delta-views",
   "description": "Library for managing views in React.",
   "main": "dist/react-delta-views.js",
-  "version": "0.5.0",
+  "version": "0.5.0-alpha.0",
   "author": "Paweł Mrowiec <work@pawel-mrowiec.pl>",
   "license": "GPL-3.0-or-later",
   "repository": {

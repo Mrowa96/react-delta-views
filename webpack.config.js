@@ -53,13 +53,8 @@ module.exports = {
       commonjs2: 'react',
       amd: 'react',
     },
-    // 'prop-types': {
-    //   commonjs: 'prop-types',
-    //   commonjs2: 'prop-types',
-    //   amd: 'prop-types',
-    // },
   },
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'source-map',
   stats: {
     assets: true,
     children: false,
