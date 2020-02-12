@@ -64,47 +64,6 @@ const Button = () => (
 )
 ```
 
-## API reference
-
-### Interfaces
-
-- ViewConfig:
-
-  - name: `string`
-  - component: `React.Component`
-  - path: `?string`
-  - default: `?boolean`
-
-- View:
-
-  - name: `string`
-  - component: `React.Component`
-  - state: `ViewState`
-  - path: `?string`
-  - default: `?boolean`
-  - outlet: `?string`
-  - options: `?object`
-
-### Components
-
-- Views
-
-  - children: `React.Children`
-  - config: `ViewConfig[]`
-
-- DefaultView
-
-### Hooks
-
-- useViews(): `{ viewsState: { views: View[] } }`
-
-### Methods
-
-- openView(name: `string`, outlet: `?string`, options: `?object`): `void`
-- closeView(name: `string`, dispatchBeforeCloseAction: `?boolean = true`): `void`
-- getCurrentView(outlet: `?string`): `View`
-
 ## TODO
 
-- Move to TypeScript or add types
 - Write tests for Views component
