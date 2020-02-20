@@ -1,13 +1,13 @@
 module.exports = {
-  collectCoverageFrom: ['<rootDir>/src/**/*.{js,jsx}', '!<rootDir>/src/*.{js,jsx}'],
-  moduleNameMapper: {
-    '~/(.*)$': '<rootDir>/src/$1',
-  },
-  moduleFileExtensions: ['js', 'jsx', 'json'],
+  collectCoverageFrom: ['<rootDir>/src/**/*.{ts,tsx}', '!<rootDir>/src/*.{ts,tsx}'],
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'json'],
+  preset: 'ts-jest',
   testEnvironment: 'node',
-  testMatch: ['<rootDir>/src/**/*.test.{js,jsx}'],
-  transform: {
-    '^.+\\.(js|jsx)$': '<rootDir>/node_modules/babel-jest',
-  },
+  testMatch: ['<rootDir>/src/**/*.test.{ts,tsx}'],
   setupFilesAfterEnv: ['<rootDir>/jest.setupTests.js'],
+  globals: {
+    'ts-jest': {
+      diagnostics: false,
+    },
+  },
 };

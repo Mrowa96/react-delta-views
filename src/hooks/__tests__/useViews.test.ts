@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react-hooks';
-import useViews from '~/hooks/useViews';
+import useViews from '../useViews';
 
 describe('[HOOK] useViews', () => {
   it('should return views state', () => {

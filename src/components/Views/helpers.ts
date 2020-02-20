@@ -1,6 +1,7 @@
 import { VIEW_HIDDEN, VIEW_VISIBLE } from './consts';
+import { ViewConfigType, ViewStateType } from '../../types';
 
-export function createInitialState(config) {
+export const createInitialState = (config: ViewConfigType[]): ViewStateType => {
   return {
     views: config.map(({ name, path, component, default: defaultView }) => {
       return {
@@ -13,9 +14,9 @@ export function createInitialState(config) {
       };
     }),
   };
-}
+};
 
-export function isViewExistsInState(viewsState, name) {
+export const isViewExistsInState = (viewsState: ViewStateType, name: string): boolean => {
   const view = viewsState.views.find(viewInState => viewInState.name === name);
 
   if (!view) {
@@ -23,4 +24,4 @@ export function isViewExistsInState(viewsState, name) {
   }
 
   return true;
-}
+};

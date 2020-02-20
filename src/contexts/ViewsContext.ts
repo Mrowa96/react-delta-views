@@ -1,6 +1,7 @@
 import { createContext } from 'react';
+import { ViewStateType } from '../types';
 
-const ViewsContext = createContext({
+const ViewsContext = createContext<{ viewsState: ViewStateType }>({
   viewsState: {
     views: [],
   },

@@ -1,6 +1,9 @@
 import { createInitialState, isViewExistsInState } from '../helpers';
+import { ViewStateType } from '../../../types';
 
-const TestComponent = () => {};
+const TestComponent = () => {
+  return null;
+};
 
 describe('[Helpers] Views helpers ', () => {
   test.each([
@@ -24,12 +27,30 @@ describe('[Helpers] Views helpers ', () => {
   });
 
   it('[isViewExistsInState] should return true if view exists in state', () => {
-    expect(isViewExistsInState({ views: [{ name: 'test' }] }, 'test')).toBeTruthy();
+    const viewsState = {
+      views: [
+        {
+          name: 'test',
+          path: '/',
+        },
+      ],
+    } as ViewStateType;
+
+    expect(isViewExistsInState(viewsState, 'test')).toBeTruthy();
   });
 
   it('[isViewExistsInState] should throw error if view not exist in state', () => {
+    const viewsState = {
+      views: [
+        {
+          name: 'test',
+          path: '/',
+        },
+      ],
+    } as ViewStateType;
+
     expect(() => {
-      isViewExistsInState({ views: [{ name: 'test' }] }, 'not-existing-test');
+      isViewExistsInState(viewsState, 'not-existing-test');
     }).toThrow();
   });
 });
