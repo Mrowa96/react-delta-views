@@ -1,8 +1,8 @@
-name: react-delta-views
+name: npmpublish
 
 on:
   release:
-    types: [created]
+    types: [published]
 
 jobs:
   build:
