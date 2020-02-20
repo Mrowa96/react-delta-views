@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { getCurrentView } from '~/components/Views';
-import useViews from '~/hooks/useViews';
-import { ViewType } from '~/types';
+import useViews from '../../hooks/useViews';
+import { ViewType } from '../../types';
+import { getCurrentView } from '../Views';
 
 export default function DefaultView(): JSX.Element | null {
   const [currentView, setCurrentView] = useState<ViewType | undefined>();

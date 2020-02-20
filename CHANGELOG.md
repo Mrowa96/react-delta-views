@@ -20,3 +20,6 @@
 ## 0.5.0
 
 - Rewrite with TypeScript
+- Remove absolute imports, because they created problems with type definitions
+- Add example for ModalView
+- Remove babel dependency

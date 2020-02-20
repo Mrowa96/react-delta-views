@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import DefaultView from '~/components/DefaultView';
-import Views from '~/components/Views';
-import { ViewConfigType } from '~/types';
+import { ViewConfigType } from '../../../types';
+import Views from '../../Views';
+import DefaultView from '..';
 
 const DummyComponent = () => <span data-testid='dummy-component'>Dummy component</span>;
 

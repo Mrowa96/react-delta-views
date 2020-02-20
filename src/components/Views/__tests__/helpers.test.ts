@@ -1,5 +1,5 @@
 import { createInitialState, isViewExistsInState } from '../helpers';
-import { ViewStateType } from '~/types';
+import { ViewStateType } from '../../../types';
 
 const TestComponent = () => {
   return null;

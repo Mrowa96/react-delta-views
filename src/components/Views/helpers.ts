@@ -1,5 +1,5 @@
 import { VIEW_HIDDEN, VIEW_VISIBLE } from './consts';
-import { ViewConfigType, ViewStateType } from '~/types';
+import { ViewConfigType, ViewStateType } from '../../types';
 
 export const createInitialState = (config: ViewConfigType[]): ViewStateType => {
   return {

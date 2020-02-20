@@ -1,6 +1,6 @@
 import React, { useReducer, useEffect } from 'react';
-import ViewsContext from '~/contexts/ViewsContext';
-import { ViewType, ViewStateType } from '~/types';
+import ViewsContext from '../../contexts/ViewsContext';
+import { ViewType, ViewStateType } from '../../types';
 import { OPEN_VIEW, CLOSE_VIEW, BEFORE_CLOSE_VIEW } from './actions';
 import { createInitialState, isViewExistsInState } from './helpers';
 import { VIEW_HIDDEN } from './consts';

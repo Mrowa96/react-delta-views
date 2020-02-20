@@ -9,14 +9,11 @@ module.exports = {
   entry: './src/index.ts',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'react-delta-views.js',
+    filename: 'index.js',
     libraryTarget: 'commonjs2',
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
-    alias: {
-      '~': path.resolve(__dirname, './src/'),
-    },
   },
   module: {
     rules: [

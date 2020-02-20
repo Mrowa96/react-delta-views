@@ -1,7 +1,6 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
-    "baseUrl": ".",
     "allowJs": false,
     "declaration": true,
     "declarationDir": "./dist",
@@ -17,10 +16,7 @@
     "strict": true,
     "target": "es6",
     "resolveJsonModule": true,
-    "experimentalDecorators": false,
-    "paths": {
-      "~/*": ["src/*"]
-    }
+    "experimentalDecorators": false
   },
   "include": ["./**/*"],
   "exclude": ["./node_modules", "./dist", "./coverage", "./public"]

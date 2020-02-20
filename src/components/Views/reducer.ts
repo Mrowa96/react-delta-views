@@ -1,6 +1,6 @@
+import { ViewStateType, ViewType } from '../../types';
 import { OPEN_VIEW, CLOSE_VIEW, BEFORE_CLOSE_VIEW } from './actions';
 import { VIEW_BEFORE_HIDDEN, VIEW_HIDDEN, VIEW_VISIBLE } from './consts';
-import { ViewStateType, ViewType } from '~/types';
 
 export default function viewReducer(
   state: ViewStateType,

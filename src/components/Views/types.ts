@@ -1,4 +1,4 @@
-import { ViewConfigType } from '~/types';
+import { ViewConfigType } from '../../types';
 
 type ViewsProps = {
   children: JSX.Element;
