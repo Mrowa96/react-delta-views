@@ -4,7 +4,7 @@ import { ViewType, ViewStateType } from '../../types';
 import { OPEN_VIEW, CLOSE_VIEW, BEFORE_CLOSE_VIEW } from './actions';
 import { createInitialState, isViewExistsInState } from './helpers';
 import { VIEW_HIDDEN } from './consts';
-import viewReducer from './reducer';
+import viewsReducer from './reducer';
 import ViewsProps from './types';
 
 let viewsState: ViewStateType;
@@ -37,7 +37,7 @@ const closeView = (name: string, dispatchBeforeCloseAction = true): void => {
 };
 
 const Views = ({ children, config }: ViewsProps): JSX.Element => {
-  [viewsState, dispatch] = useReducer(viewReducer, createInitialState(config));
+  [viewsState, dispatch] = useReducer(viewsReducer, createInitialState(config));
 
   const currentView = getCurrentView();
 

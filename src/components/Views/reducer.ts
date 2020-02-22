@@ -2,7 +2,7 @@ import { ViewStateType, ViewType } from '../../types';
 import { OPEN_VIEW, CLOSE_VIEW, BEFORE_CLOSE_VIEW } from './actions';
 import { VIEW_BEFORE_HIDDEN, VIEW_HIDDEN, VIEW_VISIBLE } from './consts';
 
-export default function viewReducer(
+export default function viewsReducer(
   state: ViewStateType,
   { type, payload }: { type: string; payload: { name: string; outlet?: string; options?: object } },
 ): ViewStateType {

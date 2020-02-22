@@ -107,3 +107,7 @@ export default ModalView;
 ## Additional information
 
 - Library was not tested with SSR, so I cannot guarantee that it will work out-of-the-box. If something is wrong, please create an Issue.
+
+## Supported browsers
+
+All browser which are compatible with ES2017.
