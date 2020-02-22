@@ -17,11 +17,12 @@
     "test:watch": "jest --env=jsdom --watch",
     "test:coverage": "jest --env=jsdom --coverage",
     "lint": "eslint --ext .js --ext .ts --ext .tsx .",
+    "prettier": "npx prettier -c \"*.{tsx,ts,js,json,md,yml}\"",
     "analyze-build": "cross-env ANALYZE_BUILD=1 webpack"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint && npm run test"
+      "pre-commit": "npm run lint && npm run prettier && npm run test"
     }
   },
   "devDependencies": {
