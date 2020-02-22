@@ -111,3 +111,7 @@ export default ModalView;
 ## Supported browsers
 
 All browser which are compatible with ES2017.
+
+## Requirements
+
+- react >= 16.9.0

@@ -2,16 +2,13 @@
 .github
 coverage
 src
-tests
 .browserslistrc
 .eslintignore
 .eslintrc.js
 .gitattributes
 .gitignore
-babel.config.js
 jest.config.js
 jest.setupTests.js
-jsconfig.json
 prettier.config.js
 tsconfig.json
 webpack.config.js
